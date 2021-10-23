@@ -1,0 +1,16 @@
+6
+//Ref	OS	type	link
+soblex_main	Android		https://soblex.de/index_android2.php
+soblex_main	iOS		https://soblex.de/index_ios2.php
+sob	Android	lemma	https://soblex.de/index_android2.php/?cmd=addinfo_show&p_slkey=%5B${LemmaKey}%5D&appversion=${AppVersion}
+sob	iOS	lemma	https://soblex.de/index_ios2.php/?cmd=sion=${AppVersion}addinfo_show&p_slkey=%5B${LemmaKey}%5D&appver
+dow_89		search index entry	https://hornjoserbsce.de/dow/artikel/${LemmaKey}
+
+
+https://soblex.de/index_ios2.php/?cmd=addinfo_show&appversion=1&p_slkey=%5B$v1.abonement1%5D
+https://soblex.de/index_android2.php/?cmd=addinfo_show%5D&appversion=${AppVersion}&p_slkey=%5B${LemmaKey}
+
+
+https://hornjoserbsce.de/dow/artikel/aas_ga/Aasfliege
+
+d89.abitur1
