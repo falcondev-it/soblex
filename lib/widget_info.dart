@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -14,11 +11,25 @@ class InfoPage extends StatefulWidget {
 }
 
 class _InfoPage extends State<InfoPage> {
-  late WebViewController _controller;
-  bool _loaded = false;
+  late final WebViewController _controller = WebViewController()
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    ..setNavigationDelegate(NavigationDelegate(
+      onNavigationRequest: (navRequest) {
+        if (navRequest.url == "about:blank") {
+          return NavigationDecision.navigate;
+        } else {
+          _launchURL(navRequest.url);
+          return NavigationDecision.prevent;
+        }
+      },
+    ));
 
-  Future<String> loadHtmlData() async {
-    return await rootBundle.loadString("assets/html/impressum.html");
+  @override
+  void initState() {
+    super.initState();
+    rootBundle
+        .loadString("assets/html/impressum.html")
+        .then((html) => _controller.loadHtmlString(html));
   }
 
   @override
@@ -29,34 +40,7 @@ class _InfoPage extends State<InfoPage> {
         borderRadius: BorderRadius.all(
           const Radius.circular(20.0),
         ),
-        child: Container(child: Builder(builder: (context) {
-          return WebView(
-            initialUrl: "about:blank",
-            javascriptMode: JavascriptMode.unrestricted,
-            onWebViewCreated: (WebViewController webViewController) {
-              _controller = webViewController;
-              if (!_loaded)
-                loadHtmlData().then((value) {
-                  debugPrint("html data loaded");
-                  _loaded = true;
-                  webViewController.loadUrl(Uri.dataFromString(value,
-                          mimeType: 'text/html',
-                          parameters: {"identifier": "test1234"},
-                          encoding: Encoding.getByName('utf-8'))
-                      .toString());
-                });
-            },
-            navigationDelegate: (navRequest) {
-              if (navRequest.url.contains("test1234") ||
-                  navRequest.url == "about:blank") {
-                return NavigationDecision.navigate;
-              } else {
-                _launchURL(navRequest.url);
-                return NavigationDecision.prevent;
-              }
-            },
-          );
-        })));
+        child: WebViewWidget(controller: _controller));
   }
 
   void _launchURL(String _url) async => await canLaunch(_url)

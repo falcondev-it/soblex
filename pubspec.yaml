@@ -26,16 +26,16 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.3 # icons
-  flutter_html: ^2.1.2 # html for listview for offline page
-  webview_flutter: ^2.0.13 # webview (info page / online page)
-  url_launcher: ^6.0.10 # needed for url launching on info page
-  provider: ^6.0.0 # needed for opening webview from offline page
-  package_info_plus: ^1.0.6 # needed to get the app versiobn for the soblex url (ios build folder has to be cleaned after changing version)
-  connectivity: ^3.0.6
-  fluttertoast: ^8.0.8
-  flutter_native_splash: ^1.2.3
-  wakelock: 0.5.3+3 # crash fix when using flutter run
+  cupertino_icons: ^2.0.0 # icons
+  flutter_html: ^3.0.0 # html for listview for offline page
+  webview_flutter: ^4.14.1 # webview (info page / online page)
+  url_launcher: ^6.3.3 # needed for url launching on info page
+  provider: ^6.1.5 # needed for opening webview from offline page
+  package_info_plus: ^10.2.2 # needed to get the app versiobn for the soblex url (ios build folder has to be cleaned after changing version)
+  connectivity_plus: ^7.3.2
+  fluttertoast: ^10.0.2
+  flutter_native_splash: ^2.4.8
+  webview_flutter_wkwebview: ^3.26.2
   # firebase_core: ^1.6.0
   # firebase_performance: ^0.7.1
   # integration_test: ^0.8.1
@@ -45,7 +45,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: "^0.9.1" # generating launch icon flutter pub run flutter_launcher_icons:main
+  flutter_launcher_icons: ^0.14.4 # generating launch icon flutter pub run flutter_launcher_icons:main
   integration_test:
     sdk: flutter
 
@@ -103,3 +103,6 @@ flutter_native_splash:
   image: assets/images/splash-icon-big.png
   android: true
   ios: true
+
+dependency_overrides:
+  html: 0.15.6 # flutter_html 3.0.0 calls query_selector.matches, removed in html 0.15.7

@@ -330,45 +330,39 @@ class _OfflinePage extends State<OfflinePage> {
                                                           "%%d", "<de></de>")
                                                       .replaceAll(
                                                           "%%h", "<hsb></hsb>"),
-                                                  customRender: {
-                                                    "hsb":
-                                                        (RenderContext context,
-                                                            Widget child) {
-                                                      return Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal:
-                                                                      5.0),
-                                                          child: Image(
-                                                            image: AssetImage(
-                                                                'assets/images/hsb.png'),
-                                                            fit: BoxFit.contain,
-                                                            height: 16,
-                                                          ));
-                                                    },
-                                                    "de":
-                                                        (RenderContext context,
-                                                            Widget child) {
-                                                      return Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal:
-                                                                      5.0),
-                                                          child: Image(
-                                                            image: AssetImage(
-                                                                'assets/images/de.png'),
-                                                            fit: BoxFit.contain,
-                                                            height: 16,
-                                                          ));
-                                                    },
-                                                  },
+                                                  extensions: [
+                                                    TagExtension(
+                                                        tagsToExtend: {"hsb"},
+                                                        child: Padding(
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    horizontal:
+                                                                        5.0),
+                                                            child: Image(
+                                                              image: AssetImage(
+                                                                  'assets/images/hsb.png'),
+                                                              fit: BoxFit.contain,
+                                                              height: 16,
+                                                            ))),
+                                                    TagExtension(
+                                                        tagsToExtend: {"de"},
+                                                        child: Padding(
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    horizontal:
+                                                                        5.0),
+                                                            child: Image(
+                                                              image: AssetImage(
+                                                                  'assets/images/de.png'),
+                                                              fit: BoxFit.contain,
+                                                              height: 16,
+                                                            ))),
+                                                  ],
                                                   style: {
                                                     "*": Style(
                                                       fontSize: FontSize(16.0),
                                                     ),
                                                   },
-                                                  tagsList: Html.tags
-                                                    ..addAll(["hsb", "de"]),
                                                 )),
                                             Padding(
                                               padding: EdgeInsets.symmetric(

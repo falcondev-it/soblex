@@ -4,7 +4,7 @@ import 'package:soblex_ios/widget_online.dart';
 import 'package:soblex_ios/widget_info.dart';
 import 'package:soblex_ios/widget_offline.dart';
 import 'package:provider/provider.dart';
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:io';
 // import 'package:firebase_core/firebase_core.dart';
@@ -153,8 +153,8 @@ class MyModel extends ChangeNotifier {
   void setURL(String url, BuildContext context) async {
     this._url = url;
     var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.mobile ||
-        connectivityResult == ConnectivityResult.wifi) {
+    if (connectivityResult.contains(ConnectivityResult.mobile) ||
+        connectivityResult.contains(ConnectivityResult.wifi)) {
       try {
         final result = await InternetAddress.lookup('soblex.de');
         if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
